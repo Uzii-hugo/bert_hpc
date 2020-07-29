@@ -2,10 +2,10 @@ ARG FROM_IMAGE_NAME=nvcr.io/nvidia/tensorflow:20.06-tf1-py3
 
 FROM ${FROM_IMAGE_NAME}
 
-RUN apt-get update && apt-get install -y pbzip2 pv bzip2 libcurl4 curl libb64-dev
+RUN apt-get update && apt-get --user install -y pbzip2 pv bzip2 libcurl4 curl libb64-dev
 RUN pip install --upgrade pip
 RUN pip install toposort networkx pytest nltk tqdm html2text progressbar
-RUN pip --no-cache-dir --no-cache install git+https://github.com/NVIDIA/dllogger
+RUN pip --no-cache-dir --no-cache --user install git+https://github.com/NVIDIA/dllogger
 
 WORKDIR /workspace
 RUN git clone https://github.com/openai/gradient-checkpointing.git
